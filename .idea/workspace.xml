@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f563c83-69ea-4f7c-9ba5-b1469a3e8fa4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jozveyab/login.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jozveyab/register.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jozveyab/core.php" afterPath="$PROJECT_DIR$/jozveyab/core.php" />
     </list>
     <ignored path="group_C_project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,36 +25,18 @@
     <favorites_list name="group_C_project" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/jozveyab/login.html">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="createpost.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jozveyab/createpost.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="48" column="40" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+            <state relative-caret-position="374">
+              <caret line="108" column="71" selection-start-line="108" selection-start-column="71" selection-end-line="108" selection-end-column="71" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1471880867334" expanded="true" signature="842:946" ph="SELECT `id`,... user" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jozveyab/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="118" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="118" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jozveyab/register.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="48" column="40" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -65,10 +49,20 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/jozveyab/core.php" />
         <option value="$PROJECT_DIR$/jozveyab/header.html" />
-        <option value="$PROJECT_DIR$/jozveyab/register.html" />
         <option value="$PROJECT_DIR$/jozveyab/login.html" />
+        <option value="$PROJECT_DIR$/jozveyab/register.html" />
+        <option value="$PROJECT_DIR$/../bookyab.org/wwwroot/core.php" />
+        <option value="$PROJECT_DIR$/jozveyab/register.php" />
+        <option value="$PROJECT_DIR$/jozveyab/login.php" />
+        <option value="$PROJECT_DIR$/jozveyab/logout.php" />
+        <option value="$PROJECT_DIR$/jozveyab/core.php" />
+        <option value="$PROJECT_DIR$/jozveyab/editpass.php" />
+        <option value="$PROJECT_DIR$/jozveyab/edituser.php" />
+        <option value="$PROJECT_DIR$/jozveyab/contact.php" />
+        <option value="$PROJECT_DIR$/jozveyab/about.php" />
+        <option value="$PROJECT_DIR$/jozveyab/userpanel.php" />
+        <option value="$PROJECT_DIR$/jozveyab/createpost.php" />
       </list>
     </option>
   </component>
@@ -81,7 +75,11 @@
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
+    <include_path>
+      <path value="" />
+    </include_path>
+  </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
@@ -116,8 +114,8 @@
       <pane id="ProjectPane">
         <subPane />
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -186,18 +184,19 @@
       <option name="presentableId" value="Default" />
       <updated>1471520043092</updated>
       <workItem from="1471520044393" duration="3403000" />
-      <workItem from="1471623191581" duration="7978000" />
+      <workItem from="1471623191581" duration="9163000" />
+      <workItem from="1471755924541" duration="34706000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11381000" />
+    <option name="totallyTimeSpent" value="47272000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1384" height="738" extended-state="0" />
+    <frame x="-9" y="-9" width="1384" height="738" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -232,10 +231,35 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/core.php">
+    <entry file="file://$PROJECT_DIR$/jozveyab/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4356">
+        <state relative-caret-position="1166">
+          <caret line="53" column="60" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/about.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="118" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="118" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1056">
+          <caret line="48" column="40" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -246,13 +270,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/login_validate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-183">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/register_validate_captcha.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -260,25 +277,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jozveyab/core.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/crawler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/crawler.py" />
     <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/header-after-login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -290,10 +293,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/about.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/jozveyab/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="48" column="40" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+        <state relative-caret-position="22">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -308,11 +319,237 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jozveyab/login.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="691">
+          <caret line="53" column="60" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/login_validate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-264">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/register.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
-          <caret line="48" column="40" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+          <caret line="70" column="11" selection-start-line="70" selection-start-column="11" selection-end-line="72" selection-end-column="25" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1471763009270" expanded="true" signature="1046:1093" ph="SELECT `emai... user" />
+            <marker date="1471763009270" expanded="true" signature="1254:1310" ph="SELECT `user... user" />
+            <marker date="1471763009270" expanded="true" signature="1585:1675" ph="INSERT INTO `user`... " />
+            <marker date="1471763009270" expanded="true" signature="2397:2425" ph="SELECT `emai... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/show.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1471379734866" expanded="true" signature="7100:7447" ph="..." />
+            <marker date="1471379734866" expanded="true" signature="7173:7416" ph="..." />
+            <marker date="1471379734866" expanded="false" signature="7301:7313" ph="..." />
+            <marker date="1471379734866" expanded="true" signature="9592:9718" ph="SELECT `text... comments" />
+            <marker date="1471379734866" expanded="true" signature="10791:11926" ph="..." />
+            <marker date="1471379734866" expanded="true" signature="10847:11552" ph="..." />
+            <marker date="1471379734866" expanded="true" signature="10917:11513" ph="..." />
+            <marker date="1471379734866" expanded="true" signature="10985:11260" ph="..." />
+            <marker date="1471379734866" expanded="false" signature="11044:11062" ph="..." />
+            <marker date="1471379734866" expanded="true" signature="11325:11470" ph="..." />
+            <marker date="1471379734866" expanded="false" signature="11384:11398" ph="..." />
+            <marker date="1471379734866" expanded="true" signature="11607:11889" ph="..." />
+            <marker date="1471379734866" expanded="true" signature="11667:11850" ph="..." />
+            <marker date="1471379734866" expanded="true" signature="12570:12883" ph="..." />
+            <marker date="1471379734866" expanded="false" signature="12609:12638" ph="..." />
+            <marker date="1471379734866" expanded="false" signature="12790:12801" ph="..." />
+            <marker date="1471379734866" expanded="true" signature="12983:13000" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3366">
+          <caret line="153" column="74" selection-start-line="153" selection-start-column="74" selection-end-line="153" selection-end-column="74" />
+          <folding>
+            <marker date="1471775246777" expanded="true" signature="842:925" ph="SELECT `id`,... user" />
+            <marker date="1471775246777" expanded="true" signature="842:926" ph="SELECT `id`,... user" />
+            <marker date="1471775246777" expanded="true" signature="842:946" ph="SELECT `id`,... user" />
+            <marker date="1471775246777" expanded="true" signature="1490:1509" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/logout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/logout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/core.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
+          <folding>
+            <marker date="1471792044082" expanded="true" signature="410:454" ph="SELECT * FRO... jozve" />
+            <marker date="1471792044082" expanded="true" signature="1043:1086" ph="SELECT * FRO... jozve" />
+            <marker date="1471792044082" expanded="true" signature="1427:1478" ph="SELECT * FRO... jozve" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/core.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12892">
+          <caret line="325" column="46" selection-start-line="325" selection-start-column="10" selection-end-line="325" selection-end-column="46" />
+          <folding>
+            <marker date="1470907977859" expanded="true" signature="812:968" ph="SELECT `id` users" />
+            <marker date="1470907977859" expanded="true" signature="2116:2207" ph="SELECT `id` users" />
+            <marker date="1470907977859" expanded="true" signature="2974:3059" ph="SELECT `id` users" />
+            <marker date="1470907977859" expanded="true" signature="4167:4190" ph="INSERT INTO `users`... " />
+            <marker date="1470907977859" expanded="true" signature="5252:5295" ph="SELECT * FRO... users" />
+            <marker date="1470907977859" expanded="true" signature="6094:6112" ph="UPDATE `user... " />
+            <marker date="1470907977859" expanded="true" signature="7137:7155" ph="UPDATE `user... " />
+            <marker date="1470907977859" expanded="true" signature="8410:8492" ph="UPDATE `user... " />
+            <marker date="1470907977859" expanded="true" signature="9206:9291" ph="SELECT `name... posts" />
+            <marker date="1470907977859" expanded="true" signature="10244:10267" ph="INSERT INTO `posts`... " />
+            <marker date="1470907977859" expanded="true" signature="11950:12033" ph="SELECT `id` posts" />
+            <marker date="1470907977859" expanded="true" signature="12147:12212" ph="UPDATE `post... " />
+            <marker date="1470907977859" expanded="true" signature="12941:13029" ph="SELECT `scor... users" />
+            <marker date="1470907977859" expanded="true" signature="13183:13242" ph="UPDATE `user... " />
+            <marker date="1470907977859" expanded="true" signature="14050:14132" ph="SELECT * FRO... posts" />
+            <marker date="1470907977859" expanded="true" signature="15064:15162" ph="SELECT `name... category" />
+            <marker date="1470907977859" expanded="true" signature="15263:15361" ph="SELECT `name... category" />
+            <marker date="1470907977859" expanded="true" signature="16079:16224" ph="SELECT *, FI... users" />
+            <marker date="1470907977859" expanded="true" signature="16110:16169" ph="SELECT GROUP... users" />
+            <marker date="1470907977859" expanded="true" signature="16853:16939" ph="SELECT `id` posts" />
+            <marker date="1470907977859" expanded="true" signature="17716:17750" ph="SELECT `valu... rating" />
+            <marker date="1470907977859" expanded="true" signature="18661:18685" ph="INSERT INTO `rating`... " />
+            <marker date="1470907977859" expanded="true" signature="19544:19563" ph="UPDATE `rati... " />
+            <marker date="1470907977859" expanded="true" signature="20394:20441" ph="SELECT `rati... posts" />
+            <marker date="1470907977859" expanded="true" signature="20798:20816" ph="UPDATE `post... " />
+            <marker date="1470907977859" expanded="true" signature="21805:21839" ph="SELECT `valu... rating" />
+            <marker date="1470907977859" expanded="true" signature="22181:22228" ph="SELECT `rati... posts" />
+            <marker date="1470907977859" expanded="true" signature="22599:22617" ph="UPDATE `post... " />
+            <marker date="1470907977859" expanded="true" signature="23691:23725" ph="SELECT `valu... rating" />
+            <marker date="1470907977859" expanded="true" signature="24563:24593" ph="SELECT `id` posts" />
+            <marker date="1470907977859" expanded="true" signature="25539:25557" ph="UPDATE `post... " />
+            <marker date="1470907977859" expanded="true" signature="27003:27021" ph="UPDATE `post... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bookyab.org/wwwroot/customers_mysql.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="69" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="69" />
+          <folding>
+            <marker date="1470907978842" expanded="true" signature="373:417" ph="SELECT * FRO... posts" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/edituser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1144">
+          <caret line="133" column="12" selection-start-line="133" selection-start-column="12" selection-end-line="133" selection-end-column="12" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1471852328344" expanded="true" signature="842:946" ph="SELECT `id`,... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/editpass.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="118" column="143" selection-start-line="118" selection-start-column="143" selection-end-line="118" selection-end-column="143" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1471852328334" expanded="true" signature="842:946" ph="SELECT `id`,... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="138" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1471855325361" expanded="true" signature="842:946" ph="SELECT `id`,... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/about.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="119" column="116" selection-start-line="119" selection-start-column="116" selection-end-line="119" selection-end-column="116" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1471859562296" expanded="true" signature="842:946" ph="SELECT `id`,... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/GitHubProjects/cesasite/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="34" column="53" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/userpanel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="90" column="47" selection-start-line="90" selection-start-column="47" selection-end-line="90" selection-end-column="47" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1471878252046" expanded="true" signature="842:946" ph="SELECT `id`,... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jozveyab/createpost.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="108" column="71" selection-start-line="108" selection-start-column="71" selection-end-line="108" selection-end-column="71" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1471880867334" expanded="true" signature="842:946" ph="SELECT `id`,... user" />
           </folding>
         </state>
       </provider>
