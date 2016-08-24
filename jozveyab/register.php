@@ -31,9 +31,6 @@ if( isset($_POST['btn-signup'])){
     $pass = strip_tags($pass);
     $re_pass = strip_tags($re_pass);
 
-    //hash the password for trust
-    $pass = hash('sha256', $pass);
-    $re_pass = hash('sha256', $re_pass);
 
 
     $query = "SELECT `email` FROM `user` WHERE email='$email'";
@@ -49,35 +46,61 @@ if( isset($_POST['btn-signup'])){
     //the number of username that similar to user email
     $username_count = mysqli_num_rows($result);
 
+    if(isset($username) && !empty($username)){
+        if(isset($email) && !empty($email)){
+            if(isset($pass) && !empty($pass)){
 
-    if($email_count == 0){
-        if($pass == $re_pass){
-            if($username_count == 0){
-                $query = "INSERT INTO `user`(`username`, `email`,`password`) VALUES ('$username', '$email', '$pass')";
-                $result = mysqli_query($conn, $query);
-                if($result){
-                    $errTyp = "teal";
-                    $errMSG = "ثبت نام شما با موفقیت انجام شد . لطفا وارد شوید";
+                //hash the password for trust
+                $pass = hash('sha256', $pass);
+                $re_pass = hash('sha256', $re_pass);
+
+                if($email_count == 0){
+                    if($pass == $re_pass){
+                        if($username_count == 0){
+                            $query = "INSERT INTO `user`(`username`, `email`,`password`) VALUES ('$username', '$email', '$pass')";
+                            $result = mysqli_query($conn, $query);
+                            if($result){
+                                $errTyp = "teal";
+                                $errMSG = "ثبت نام شما با موفقیت انجام شد . لطفا وارد شوید";
+                                $conn = null;
+                            }
+                        }
+                        else{
+                            $errTyp = "red";
+                            $errMSG = "نام کاربری وارد شده تکراری می باشد";
+                            $conn = null;
+                        }
+                    }
+                    else{
+                        $errTyp = "red";
+                        $errMSG = "رمز عبور وارد شده با تکرار آن مطابقت ندارد";
+                        $conn = null;
+                    }
+                }
+                else{
+                    $errTyp = "red";
+                    $errMSG = "پست الکترونیک وارد شده تکراری می باشد";
                     $conn = null;
                 }
             }
             else{
                 $errTyp = "red";
-                $errMSG = "نام کاربری وارد شده تکراری می باشد";
+                $errMSG = "رمز عبور و تکرار آن را وارد کنید";
                 $conn = null;
             }
         }
         else{
             $errTyp = "red";
-            $errMSG = "رمز عبور وارد شده با تکرار آن مطابقت ندارد";
+            $errMSG = "پست الکترونیک خود را وارد کنید";
             $conn = null;
         }
     }
     else{
         $errTyp = "red";
-        $errMSG = "پست الکترونیک وارد شده تکراری می باشد";
+        $errMSG = "نام کاربری خود را وارد کنید";
         $conn = null;
     }
+
 
 
 }
