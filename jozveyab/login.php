@@ -30,18 +30,22 @@ if(isset($_POST['btn-login'])){
     $pass = strip_tags($pass);
 
 
-    $result = mysqli_query($conn, "SELECT `id`, `username`, `email`, `password` FROM `user` WHERE username='$username' AND password='$pass'");
-    header('Location : index.php');
-    $row = mysqli_fetch_array($result);
 
-    //there is one row if username and password is correct
-    $count = mysqli_num_rows($result);
+
 
     if(isset($username) && !empty($username)){
         if(isset($pass) && !empty($pass)){
 
             //hash the password for trust
             $pass = hash('sha256', $pass);
+
+
+            $result = mysqli_query($conn, "SELECT `id`, `username`, `email`, `password` FROM `user` WHERE username='$username' AND password='$pass'");
+            header('Location : index.php');
+            $row = mysqli_fetch_array($result);
+
+            //there is one row if username and password is correct
+            $count = mysqli_num_rows($result);
 
             if($count == 1){
                 $_SESSION['user'] = $row['id'];

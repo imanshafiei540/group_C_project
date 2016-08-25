@@ -40,7 +40,7 @@ function get_user_data($user_id){
         die("Connection failed : " . mysqli_error());
     }
 
-    $user_id = mysqli_real_escape_string($user_id);
+    $user_id = mysqli_real_escape_string($conn,$user_id);
     $query = "SELECT * FROM `jozve` WHERE `id`='$user_id'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
@@ -67,5 +67,5 @@ function get_posts($limit){
 
 }
 
-function
+
 
