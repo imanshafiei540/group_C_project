@@ -2,45 +2,69 @@
 session_start();
 ob_start();
 if(isset($_SESSION['user']) != ""){
-    header('Location : index.php');
-    echo 1;
-}
+    if(isset($_POST['btn-create-post'])){
+        echo 1;
+        $DB_HOST = 'localhost';
+        $DB_USER = 'root';
+        $DB_PASS = '';
+        $DB_NAME = 'jozveyab';
 
-if(isset($_POST['btn-login'])){
-    echo 1;
-    $DB_HOST = 'localhost';
-    $DB_USER = 'root';
-    $DB_PASS = '';
-    $DB_NAME = 'jozveyab';
+        $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+        mysqli_set_charset($conn, 'utf8');
+        if ( !$conn ) {
+            die("Connection failed : " . mysqli_error());
+        }
 
-    $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+        //scape variables for security
+        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $subject = mysqli_real_escape_string($conn, $_POST['subject']);
+        $author = mysqli_real_escape_string($conn , $_POST['author']);
+        $ostad = mysqli_real_escape_string($conn , $_POST['ostad']);
+        $uni = mysqli_real_escape_string($conn , $_POST['uni']);
 
-    if ( !$conn ) {
-        die("Connection failed : " . mysqli_error());
+
+        //can not sql injection for server
+        //strip string from tags like script tags
+        $name = strip_tags($name);
+        $subject = strip_tags($subject);
+        $author = strip_tags($author);
+        $ostad = strip_tags($ostad);
+        $uni = strip_tags($uni);
+        $author_id = $_SESSION['user'];
+
+        if(isset($name) && !empty($name) && isset($subject) && !empty($subject)){
+
+            $query = "INSERT INTO `jozve`(`jozve_name`, `jozve_ostad`, `jozve_author`, `jozve_lesson`, `jozve_uni`, `author_id`) VALUES ('$name', '$ostad', '$author', '$subject','$uni', '$author_id')";
+            $result = mysqli_query($conn, $query);
+
+            if($result){
+                $errTyp = "teal";
+                $errMSG = "پست شما با موفقیت پست گردید";
+                $conn = null;
+            }
+            else{
+                $errTyp = "red";
+                $errMSG = "مشکلی در وارد کردن اطلاعات جزوه ی شما در سیستم به وجود آمده ، لطفا دوباره تلاش کنید";
+                $conn = null;
+            }
+        }
+        else{
+            $errTyp = "red";
+            $errMSG = "نام جزوه و موضوع جزوه حتما باید وارد شود";
+            $conn = null;
+        }
+
+
+
+
     }
 
-    //scape variables for security
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $pass = mysqli_real_escape_string($conn, $_POST['pass']);
-
-
-    //can not sql injection for server
-    //strip string from tags like script tags
-    $username = strip_tags($username);
-    $pass = strip_tags($pass);
-
-
-    //hash the password for trust
-    $pass = hash('sha256', $pass);
-
-    $result = mysqli_query($conn, "SELECT `id`, `username`, `email`, `password` FROM `user` WHERE username='$username' AND password='$pass'");
-    header('Location : index.php');
-    $row = mysqli_fetch_array($result);
-
-    //there is one row if username and password is correct
-    $count = mysqli_num_rows($result);
-
 }
+else{
+    header('Location: login.php');
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fa">
@@ -85,8 +109,7 @@ if(isset($_POST['btn-login'])){
             font-size: large;
 
         }
-
-
+        
     </style>
 </head>
 <body class="cyan loaded">
@@ -94,6 +117,23 @@ if(isset($_POST['btn-login'])){
 <div id="login-form" class="row">
 
     <div style="text-align: right!important;" class="col s8 offset-s2 center z-depth-6 card-panel">
+        <?php
+        if ( isset($errMSG) ) {
+
+            ?>
+            <div class="row">
+                <div class="col s12 m12">
+                    <div class="card-panel <?php echo $errTyp; ?>">
+          <span class="white-text">
+               <?php echo $errMSG; ?>
+          </span>
+                    </div>
+                </div>
+            </div>
+
+            <?php
+        }
+        ?>
     <form action="" method="post" class="login-form">
 
         <div class="row">
@@ -132,7 +172,7 @@ if(isset($_POST['btn-login'])){
 
 
         <div class="col s12">
-            <button style="margin-bottom: 5%;margin-top: 5%;width: 100%" class="btn waves-effect waves-light" type="submit" name="btn-edit-user">ایجاد پست</button>
+            <button style="margin-bottom: 5%;margin-top: 5%;width: 100%" class="btn waves-effect waves-light" type="submit" name="btn-create-post">ایجاد پست</button>
         </div>
 
 

@@ -2,8 +2,8 @@
 session_start();
 ob_start();
 if(isset($_SESSION['user']) != ""){
-    header('Location : index.php');
-    echo 1;
+    header('Location: index.php');
+
 }
 
 if(isset($_POST['btn-login'])){
@@ -30,29 +30,44 @@ if(isset($_POST['btn-login'])){
     $pass = strip_tags($pass);
 
 
-    //hash the password for trust
-    $pass = hash('sha256', $pass);
-
-    $result = mysqli_query($conn, "SELECT `id`, `username`, `email`, `password` FROM `user` WHERE username='$username' AND password='$pass'");
-    header('Location : index.php');
-    $row = mysqli_fetch_array($result);
-
-    //there is one row if username and password is correct
-    $count = mysqli_num_rows($result);
 
 
-    if($count == 1){
-        echo 1;
 
-        header('Location : index.php');
-        $_SESSION['user'] = $row['id'];
-        header('Location : index.php');
-        $conn = null;
+    if(isset($username) && !empty($username)){
+        if(isset($pass) && !empty($pass)){
 
+            //hash the password for trust
+            $pass = hash('sha256', $pass);
+
+
+            $result = mysqli_query($conn, "SELECT `id`, `username`, `email`, `password` FROM `user` WHERE username='$username' AND password='$pass'");
+            header('Location : index.php');
+            $row = mysqli_fetch_array($result);
+
+            //there is one row if username and password is correct
+            $count = mysqli_num_rows($result);
+
+            if($count == 1){
+                $_SESSION['user'] = $row['id'];
+                $conn = null;
+                header('Location: index.php');
+
+            }
+            else{
+                $errTyp = "red";
+                $errMSG = "نام کاربری یا رمز عبور وارد شده اشتباه می باشد";
+                $conn = null;
+            }
+        }
+        else{
+            $errTyp = "red";
+            $errMSG = "رمز عبور خود را وارد کنید";
+            $conn = null;
+        }
     }
     else{
         $errTyp = "red";
-        $errMSG = "نام کاربری یا رمز عبور وارد شده اشتباه می باشد";
+        $errMSG = "نام کاربری خود را وارد کنید";
         $conn = null;
     }
 
