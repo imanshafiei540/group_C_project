@@ -1,47 +1,3 @@
-<?php
-session_start();
-ob_start();
-if(isset($_SESSION['user']) != ""){
-    header('Location : index.php');
-    echo 1;
-}
-
-if(isset($_POST['btn-login'])){
-    echo 1;
-    $DB_HOST = 'localhost';
-    $DB_USER = 'root';
-    $DB_PASS = '';
-    $DB_NAME = 'jozveyab';
-
-    $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
-
-    if ( !$conn ) {
-        die("Connection failed : " . mysqli_error());
-    }
-
-    //scape variables for security
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $pass = mysqli_real_escape_string($conn, $_POST['pass']);
-
-
-    //can not sql injection for server
-    //strip string from tags like script tags
-    $username = strip_tags($username);
-    $pass = strip_tags($pass);
-
-
-    //hash the password for trust
-    $pass = hash('sha256', $pass);
-
-    $result = mysqli_query($conn, "SELECT `id`, `username`, `email`, `password` FROM `user` WHERE username='$username' AND password='$pass'");
-    header('Location : index.php');
-    $row = mysqli_fetch_array($result);
-
-    //there is one row if username and password is correct
-    $count = mysqli_num_rows($result);
-
-}
-?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -51,12 +7,6 @@ if(isset($_POST['btn-login'])){
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
 
     <style>
@@ -92,6 +42,15 @@ if(isset($_POST['btn-login'])){
     </style>
 </head>
 <body class="cyan loaded">
+<?php
+session_start();
+if(isset($_SESSION['user']) != ""){
+    include_once('header.html');
+}
+else{
+    include_once('header.html');
+}
+?>
 
 <div id="login-form" class="row">
 
@@ -134,6 +93,9 @@ if(isset($_POST['btn-login'])){
         </div>
 </div>
 </div>
+<?php
+include_once('footer.html');
+?>
 </body>
 
 </html>
