@@ -2,44 +2,31 @@
 session_start();
 ob_start();
 if(isset($_SESSION['user']) != ""){
-    header('Location : index.php');
-    echo 1;
-}
 
-if(isset($_POST['btn-login'])){
-    echo 1;
     $DB_HOST = 'localhost';
     $DB_USER = 'root';
     $DB_PASS = '';
     $DB_NAME = 'jozveyab';
 
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
-
+    mysqli_set_charset($conn, 'utf8');
     if ( !$conn ) {
         die("Connection failed : " . mysqli_error());
     }
 
-    //scape variables for security
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $pass = mysqli_real_escape_string($conn, $_POST['pass']);
+    $user_id = $_SESSION['user'];
+
+    $query = "SELECT `id`, `username`, `email`, `first_name`, `last_name`, `uni_name`, `age`, `password` FROM `user` WHERE `id`='$user_id'";
+    $result = mysqli_query($conn, $query);
+
+    $row = mysqli_fetch_assoc($result);
+
+    $conn = null;
 
 
-    //can not sql injection for server
-    //strip string from tags like script tags
-    $username = strip_tags($username);
-    $pass = strip_tags($pass);
-
-
-    //hash the password for trust
-    $pass = hash('sha256', $pass);
-
-    $result = mysqli_query($conn, "SELECT `id`, `username`, `email`, `password` FROM `user` WHERE username='$username' AND password='$pass'");
-    header('Location : index.php');
-    $row = mysqli_fetch_array($result);
-
-    //there is one row if username and password is correct
-    $count = mysqli_num_rows($result);
-
+}
+else{
+    header('Location: login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -95,7 +82,15 @@ if(isset($_POST['btn-login'])){
     </style>
 </head>
 <body class="cyan loaded">
+<?php
 
+if(isset($_SESSION['user']) != ""){
+    include_once('header-after-login.html');
+}
+else{
+    include_once('header-before-login.html');
+}
+?>
 <div id="login-form" class="row">
 
     <div style="text-align: right!important;" class="col s8 offset-s2 center z-depth-6 card-panel">
@@ -105,15 +100,15 @@ if(isset($_POST['btn-login'])){
                 <hr>
             </div>
             <div class="row">
-                <p class="margin right-align medium-small">نام کاربری</p>
+                <p class="margin right-align medium-small"><?php echo $row['username']; ?></p>
                 <hr>
             </div>
             <div class="row">
-                <p class="margin right-align medium-small">پست الکترونیک</p>
+                <p class="margin right-align medium-small"><?php echo $row['email']; ?></p>
                 <hr>
             </div>
             <div class="row">
-                <p class="margin right-align medium-small">نام و نام خانوادگی</p>
+                <p class="margin right-align medium-small"><?php echo $row['first_name'] ." ". $row['last_name']; ?></p>
                 <hr>
             </div>
             <div class="row">
@@ -126,6 +121,14 @@ if(isset($_POST['btn-login'])){
             </div>
             <div class="row">
                 <p class="margin right-align medium-small">رتبه من</p>
+                <hr>
+            </div>
+            <div class="row">
+                <p class="margin right-align medium-small"><?php echo $row['uni_name'] == "" ? 'دانشگاه شما در سیستم موجود نیست' : $row['uni_name']; ?></p>
+                <hr>
+            </div>
+            <div class="row">
+                <p class="margin right-align medium-small"><?php echo $row['age'] == "0" ? 'سن شما در سیستم موجود نیست' : $row['age']; ?></p>
                 <hr>
             </div>
 
@@ -142,6 +145,9 @@ if(isset($_POST['btn-login'])){
     </div>
     </div>
 </div>
+<?php
+include_once('footer.html');
+?>
 </body>
 
 </html>

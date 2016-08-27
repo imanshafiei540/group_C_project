@@ -90,7 +90,15 @@ if(isset($_POST['btn-login'])){
     </style>
 </head>
 <body class="cyan loaded">
+<?php
 
+if(isset($_SESSION['user']) != ""){
+    include_once('header-after-login.html');
+}
+else{
+    include_once('header-before-login.html');
+}
+?>
 <div id="login-form" class="row">
 
     <div style="text-align: right!important;" class="col s8 offset-s2 center z-depth-6 card-panel">
@@ -147,6 +155,9 @@ if(isset($_POST['btn-login'])){
     </div>
 </div>
 </div>
+<?php
+include_once('footer.html');
+?>
 </body>
 
 </html>

@@ -1,45 +1,89 @@
 <?php
 session_start();
 ob_start();
-if(isset($_SESSION['user']) != ""){
-    header('Location : index.php');
-    echo 1;
-}
+if(isset($_SESSION['user']) != "") {
 
-if(isset($_POST['btn-login'])){
-    echo 1;
-    $DB_HOST = 'localhost';
-    $DB_USER = 'root';
-    $DB_PASS = '';
-    $DB_NAME = 'jozveyab';
+    $user_id = $_SESSION['user'];
 
-    $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+    if (isset($_POST['btn-edit-pass'])) {
+        echo 1;
+        $DB_HOST = 'localhost';
+        $DB_USER = 'root';
+        $DB_PASS = '';
+        $DB_NAME = 'jozveyab';
 
-    if ( !$conn ) {
-        die("Connection failed : " . mysqli_error());
+        $conn = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+        mysqli_set_charset($conn, 'utf8');
+        if (!$conn) {
+            die("Connection failed : " . mysqli_error());
+        }
+
+        //scape variables for security
+        $old_pass = mysqli_real_escape_string($conn, $_POST['old-pass']);
+        $new_pass = mysqli_real_escape_string($conn, $_POST['new-pass']);
+        $re_new_pass = mysqli_real_escape_string($conn, $_POST['re-new-pass']);
+
+
+        //can not sql injection for server
+        //strip string from tags like script tags
+        $old_pass = strip_tags($old_pass);
+        $new_pass = strip_tags($new_pass);
+        $re_new_pass = strip_tags($re_new_pass);
+
+
+        if (isset($old_pass) && !empty($old_pass) && isset($new_pass) && !empty($new_pass) && isset($re_new_pass) && !empty($re_new_pass)) {
+
+            $old_pass = hash('sha256', $old_pass);
+            $new_pass = hash('sha256', $new_pass);
+            $re_new_pass = hash('sha256', $re_new_pass);
+
+            $query = "SELECT `password` FROM `user` WHERE `id`='$user_id'";
+            $result = mysqli_query($conn, $query);
+            $real_pass = mysqli_fetch_assoc($result);
+
+            if ($real_pass['password'] != $old_pass ){
+                $errTyp = "red";
+                $errMSG = "رمز عبور فعلی خود را اشتباه وارد کردید";
+                $conn = null;
+            }
+
+            else{
+                if ($new_pass != $re_new_pass){
+                    $errTyp = "red";
+                    $errMSG = "رمز عبور وارد شده با تکرار آن مطابقت ندارد";
+                    $conn = null;
+                }
+                else{
+                    $query = "UPDATE `user` SET `password`='$new_pass' WHERE `id`='$user_id'";
+                    $result = mysqli_query($conn, $query);
+                    if ($result){
+                        $errTyp = "teal";
+                        $errMSG = "رمز عبور با موفقیت تغییر پیدا کرد";
+                        $conn = null;
+                    }
+
+                    else{
+                        $errTyp = "red";
+                        $errMSG = "در ایجاد تغییرات مشکلی به وجود آمده است";
+                        $conn = null;
+
+                    }
+                }
+            }
+
+            $conn = null;
+        }
+
+        else{
+            $errTyp = "red";
+            $errMSG = "لطفا تمام قسمت ها را پر کنید";
+            $conn = null;
+        }
     }
-
-    //scape variables for security
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $pass = mysqli_real_escape_string($conn, $_POST['pass']);
-
-
-    //can not sql injection for server
-    //strip string from tags like script tags
-    $username = strip_tags($username);
-    $pass = strip_tags($pass);
-
-
-    //hash the password for trust
-    $pass = hash('sha256', $pass);
-
-    $result = mysqli_query($conn, "SELECT `id`, `username`, `email`, `password` FROM `user` WHERE username='$username' AND password='$pass'");
-    header('Location : index.php');
-    $row = mysqli_fetch_array($result);
-
-    //there is one row if username and password is correct
-    $count = mysqli_num_rows($result);
-
+    $conn = null;
+}
+else{
+    header('Location: login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -88,27 +132,52 @@ if(isset($_POST['btn-login'])){
     </style>
 </head>
 <body class="cyan loaded">
+<?php
 
+if(isset($_SESSION['user']) != ""){
+    include_once('header-after-login.html');
+}
+else{
+    include_once('header-before-login.html');
+}
+?>
 <div id="login-form" class="row">
 
     <div style="text-align: right!important;" class="col s8 offset-s2 center z-depth-6 card-panel">
+        <?php
+        if ( isset($errMSG) ) {
+
+            ?>
+            <div class="row">
+                <div class="col s12 m12">
+                    <div class="card-panel <?php echo $errTyp; ?>">
+          <span class="white-text">
+               <?php echo $errMSG; ?>
+          </span>
+                    </div>
+                </div>
+            </div>
+
+            <?php
+        }
+        ?>
     <form action="" method="post" class="login-form">
 
         <div class="row">
             <div class="input-field col s12">
-                <label style="padding-right: 2%" for="username" class="active right-align">رمز عبور کنونی</label>
-                <input id="username" name="username" type="password" required>
+                <label style="padding-right: 2%" for="old-pass" class="active right-align">رمز عبور کنونی</label>
+                <input id="old-pass" name="old-pass" type="password" required>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s6">
-                <label for="username" class="active right-align">تکرار رمز عبور جدید</label>
-                <input id="username" name="username" type="password" required>
+                <label for="re-new-pass" class="active right-align">تکرار رمز عبور جدید</label>
+                <input id="re-new-pass" name="re-new-pass" type="password" required>
             </div>
             <div class="input-field col s6">
-                <label for="username" class="active right-align">رمز عبور جدید</label>
-                <input id="username" name="username" type="password" required>
+                <label for="new-pass" class="active right-align">رمز عبور جدید</label>
+                <input id="new-pass" name="new-pass" type="password" required>
             </div>
         </div>
 
@@ -131,6 +200,9 @@ if(isset($_POST['btn-login'])){
     </div>
 </div>
 </div>
+<?php
+include_once('footer.html');
+?>
 </body>
 
 </html>

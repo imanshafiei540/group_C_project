@@ -1,45 +1,170 @@
 <?php
 session_start();
 ob_start();
-if(isset($_SESSION['user']) != ""){
-    header('Location : index.php');
-    echo 1;
-}
+if(isset($_SESSION['user']) != "") {
 
-if(isset($_POST['btn-login'])){
-    echo 1;
-    $DB_HOST = 'localhost';
-    $DB_USER = 'root';
-    $DB_PASS = '';
-    $DB_NAME = 'jozveyab';
+    $user_id = $_SESSION['user'];
 
-    $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+    if (isset($_POST['btn-edit-user'])) {
+        echo 1;
+        $DB_HOST = 'localhost';
+        $DB_USER = 'root';
+        $DB_PASS = '';
+        $DB_NAME = 'jozveyab';
 
-    if ( !$conn ) {
-        die("Connection failed : " . mysqli_error());
+        $conn = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+        mysqli_set_charset($conn, 'utf8');
+        if (!$conn) {
+            die("Connection failed : " . mysqli_error());
+        }
+
+        //scape variables for security
+        $username = mysqli_real_escape_string($conn, $_POST['username']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
+        $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
+        $uni_name = mysqli_real_escape_string($conn, $_POST['uni_name']);
+        $age = mysqli_real_escape_string($conn, $_POST['age']);
+
+
+        //can not sql injection for server
+        //strip string from tags like script tags
+        $username = strip_tags($username);
+        $email = strip_tags($email);
+        $first_name = strip_tags($first_name);
+        $last_name = strip_tags($last_name);
+        $uni_name = strip_tags($uni_name);
+        $age = strip_tags($age);
+
+
+        if (isset($username) && !empty($username)) {
+            $query = "SELECT `username` FROM `user` WHERE username='$username'";
+            $result = mysqli_query($conn, $query);
+
+            //the number of username that similar to user email
+            $username_count = mysqli_num_rows($result);
+
+            if ($username_count == 0) {
+                $query = "UPDATE `user` SET `username`='$username' WHERE `id`='$user_id'";
+                $result = mysqli_query($conn, $query);
+                if ($result){
+                    $errTyp = "teal";
+                    $errMSG = "تغییرات با موفقیت ثبت شد";
+
+                }
+
+            }
+            else{
+                $errTyp = "red";
+                $errMSG = "در ایجاد تغییرات مشکلی به وجود آمده است";
+
+
+            }
+        }
+
+        if (isset($email) && !empty($email)) {
+            $query = "SELECT `email` FROM `user` WHERE email='$email'";
+            $result = mysqli_query($conn, $query);
+
+            //the number of username that similar to user email
+            $email_count = mysqli_num_rows($result);
+
+            if ($email_count == 0) {
+                $query = "UPDATE `user` SET `email`='$email' WHERE `id`='$user_id'";
+                $result = mysqli_query($conn, $query);
+                if ($result){
+                    $errTyp = "teal";
+                    $errMSG = "تغییرات با موفقیت ثبت شد";
+
+                }
+
+            }
+            else{
+                $errTyp = "red";
+                $errMSG = "در ایجاد تغییرات مشکلی به وجود آمده است";
+
+
+            }
+        }
+
+        if (isset($first_name) && !empty($first_name)) {
+
+
+            $query = "UPDATE `user` SET `first_name`='$first_name' WHERE `id`='$user_id'";
+            $result = mysqli_query($conn, $query);
+            if ($result){
+                $errTyp = "teal";
+                $errMSG = "تغییرات با موفقیت ثبت شد";
+
+            }
+            else{
+                $errTyp = "red";
+                $errMSG = "در ایجاد تغییرات مشکلی به وجود آمده است";
+
+
+            }
+        }
+
+        if (isset($last_name) && !empty($last_name)) {
+
+
+            $query = "UPDATE `user` SET `last_name`='$last_name' WHERE `id`='$user_id'";
+            $result = mysqli_query($conn, $query);
+            if ($result){
+                $errTyp = "teal";
+                $errMSG = "تغییرات با موفقیت ثبت شد";
+
+            }
+            else{
+                $errTyp = "red";
+                $errMSG = "در ایجاد تغییرات مشکلی به وجود آمده است";
+
+
+            }
+        }
+
+        if (isset($uni_name) && !empty($uni_name)) {
+
+
+            $query = "UPDATE `user` SET `uni_name`='$uni_name' WHERE `id`='$user_id'";
+            $result = mysqli_query($conn, $query);
+            if ($result){
+                $errTyp = "teal";
+                $errMSG = "تغییرات با موفقیت ثبت شد";
+
+            }
+            else{
+                $errTyp = "red";
+                $errMSG = "در ایجاد تغییرات مشکلی به وجود آمده است";
+
+
+            }
+        }
+
+        if (isset($age) && !empty($age)) {
+
+
+            $query = "UPDATE `user` SET `age`='$age' WHERE `id`='$user_id'";
+            $result = mysqli_query($conn, $query);
+            if ($result){
+                $errTyp = "teal";
+                $errMSG = "تغییرات با موفقیت ثبت شد";
+
+            }
+            else{
+                $errTyp = "red";
+                $errMSG = "در ایجاد تغییرات مشکلی به وجود آمده است";
+
+
+            }
+        }
+
+        $conn = null;
     }
-
-    //scape variables for security
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $pass = mysqli_real_escape_string($conn, $_POST['pass']);
-
-
-    //can not sql injection for server
-    //strip string from tags like script tags
-    $username = strip_tags($username);
-    $pass = strip_tags($pass);
-
-
-    //hash the password for trust
-    $pass = hash('sha256', $pass);
-
-    $result = mysqli_query($conn, "SELECT `id`, `username`, `email`, `password` FROM `user` WHERE username='$username' AND password='$pass'");
-    header('Location : index.php');
-    $row = mysqli_fetch_array($result);
-
-    //there is one row if username and password is correct
-    $count = mysqli_num_rows($result);
-
+    $conn = null;
+}
+else{
+    header('Location: login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -88,16 +213,41 @@ if(isset($_POST['btn-login'])){
     </style>
 </head>
 <body class="cyan loaded">
+<?php
 
+if(isset($_SESSION['user']) != ""){
+    include_once('header-after-login.html');
+}
+else{
+    include_once('header-before-login.html');
+}
+?>
 <div id="login-form" class="row">
 
     <div style="text-align: right!important;" class="col s8 offset-s2 center z-depth-6 card-panel">
+        <?php
+        if ( isset($errMSG) ) {
+
+            ?>
+            <div class="row">
+                <div class="col s12 m12">
+                    <div class="card-panel <?php echo $errTyp; ?>">
+          <span class="white-text">
+               <?php echo $errMSG; ?>
+          </span>
+                    </div>
+                </div>
+            </div>
+
+            <?php
+        }
+        ?>
     <form action="" method="post" class="login-form">
 
         <div class="row">
             <div class="input-field col s6">
                 <label for="username" class="active right-align">پست الکترونیک</label>
-                <input id="username" name="username" type="email">
+                <input id="username" name="email" type="email">
             </div>
             <div class="input-field col s6">
                 <label for="username" class="active right-align">نام کاربری</label>
@@ -107,12 +257,12 @@ if(isset($_POST['btn-login'])){
 
         <div class="row">
             <div class="input-field col s6">
-                <label for="username" class="active right-align">نام خانوادگی</label>
-                <input id="username" name="username" type="text">
+                <label for="last_name" class="active right-align">نام خانوادگی</label>
+                <input id="last_name" name="last_name" type="text">
             </div>
             <div class="input-field col s6">
-                <label for="username" class="active right-align">نام</label>
-                <input id="username" name="username" type="text">
+                <label for="first_name" class="active right-align">نام</label>
+                <input id="first_name" name="first_name" type="text">
             </div>
         </div>
 
@@ -120,12 +270,12 @@ if(isset($_POST['btn-login'])){
 
         <div class="row">
             <div class="input-field col s6">
-                <label for="username" class="active right-align">سن</label>
-                <input id="username" name="username" type="text" >
+                <label for="age" class="active right-align">سن</label>
+                <input id="age" name="age" type="text" >
             </div>
             <div class="input-field col s6">
-                <label for="username" class="active right-align">نام دانشگاه</label>
-                <input id="username" name="username" type="text" >
+                <label for="uni_name" class="active right-align">نام دانشگاه</label>
+                <input id="uni_name" name="uni_name" type="text" >
             </div>
         </div>
 
@@ -146,6 +296,9 @@ if(isset($_POST['btn-login'])){
     </div>
 </div>
 </div>
+<?php
+include_once('footer.html');
+?>
 </body>
 
 </html>

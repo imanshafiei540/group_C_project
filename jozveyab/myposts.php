@@ -87,6 +87,15 @@ else{
     </style>
 </head>
 <body class="cyan loaded">
+<?php
+
+if(isset($_SESSION['user']) != ""){
+    include_once('header-after-login.html');
+}
+else{
+    include_once('header-before-login.html');
+}
+?>
     <div class="row">
         <div id="box" style="text-align: right!important;" class="col s8 offset-s2 center z-depth-6">
 <?php
@@ -106,6 +115,9 @@ while ($row = mysqli_fetch_array($result)){
 
         </div>
     </div>
+    <?php
+    include_once('footer.html');
+    ?>
 </body>
 
 </html>

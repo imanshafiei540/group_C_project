@@ -47,10 +47,10 @@
 <?php
 session_start();
 if(isset($_SESSION['user']) != ""){
-    include_once('header.html');
+    include_once('header-after-login.html');
 }
 else{
-    include_once('header.html');
+    include_once('header-before-login.html');
 }
 ?>
 <div id="login-form" class="row">
