@@ -192,7 +192,7 @@ else{
     </form>
     <div class="row">
         <div class="input-field col s6 m6 l6">
-            <p class="margin left-align medium-small"><a href="register.php">پنل کاربری</a></p>
+            <p class="margin left-align medium-small"><a href="userpanel.php">پنل کاربری</a></p>
         </div>
         <div class="input-field col s6 m6 l6">
             <p class="margin right-align medium-small"><a href="edituser.php">ویرایش مشخصات فردی</a></p>
