@@ -17,7 +17,8 @@ if ( !$conn ) {
 }
 
 $result = mysqli_query($conn, "SELECT * FROM jozve ORDER BY id DESC LIMIT 4");
-$conn = null;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fa">
@@ -182,7 +183,13 @@ if (isset($_SESSION['user']) != "") {
         <h4>محبوب ترین جزوه ها</h4>
         <hr>
         <?php
-        while ($row = mysqli_fetch_array($result)){
+        $query = "SELECT * FROM likes ORDER BY likes DESC LIMIT 4";
+        $res = mysqli_query($conn, $query);
+        while ($data = mysqli_fetch_assoc($res)){
+            $id = $data['post_id'];
+            $query2 = "SELECT * FROM jozve WHERE `id`='$id'";
+            $res2 = mysqli_query($conn, $query2);
+            $row = mysqli_fetch_assoc($res2);
             echo '<div id="box" style="margin: 2%;width: 21%" class="col s3 center z-depth-2 card-panel">
                 <img width="80%" height="150px" src="static/images/icon_Linkedin.png">
                 <hr>
@@ -192,7 +199,9 @@ if (isset($_SESSION['user']) != "") {
                 <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="45 Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes 1" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
 
             </div>';
+
         }
+
         ?>
 
 
@@ -203,7 +212,13 @@ if (isset($_SESSION['user']) != "") {
         <h4>پربازدید ترین جزوه ها</h4>
         <hr>
         <?php
-        while ($row = mysqli_fetch_array($result)){
+        $query = "SELECT * FROM views ORDER BY views DESC LIMIT 4";
+        $res = mysqli_query($conn, $query);
+        while ($data = mysqli_fetch_assoc($res)){
+            $id = $data['post_id'];
+            $query2 = "SELECT * FROM jozve WHERE `id`='$id'";
+            $res2 = mysqli_query($conn, $query2);
+            $row = mysqli_fetch_assoc($res2);
             echo '<div id="box" style="margin: 2%;width: 21%" class="col s3 center z-depth-2 card-panel">
                 <img width="80%" height="150px" src="static/images/icon_Linkedin.png">
                 <hr>
@@ -213,7 +228,10 @@ if (isset($_SESSION['user']) != "") {
                 <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="45 Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes 1" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
 
             </div>';
+
         }
+
+        $conn = null;
         ?>
 
 

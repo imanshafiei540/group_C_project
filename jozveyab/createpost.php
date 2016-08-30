@@ -3,7 +3,6 @@ session_start();
 ob_start();
 if(isset($_SESSION['user']) != ""){
     if(isset($_POST['btn-create-post'])){
-        echo 1;
         $DB_HOST = 'localhost';
         $DB_USER = 'root';
         $DB_PASS = '';
@@ -37,9 +36,20 @@ if(isset($_SESSION['user']) != ""){
             $query = "INSERT INTO `jozve`(`jozve_name`, `jozve_ostad`, `jozve_author`, `jozve_lesson`, `jozve_uni`, `author_id`) VALUES ('$name', '$ostad', '$author', '$subject','$uni', '$author_id')";
             $result = mysqli_query($conn, $query);
 
-            if($result){
+            $query2 = "SELECT `id` FROM jozve ORDER BY id DESC LIMIT 1";
+            $result2 = mysqli_query($conn, $query2);
+            $post_id = mysqli_fetch_array($result2);
+            $post_id = $post_id['id'];
+
+            $query3 = "INSERT INTO `likes`(`likes`, `post_id`) VALUES (0 , '$post_id')";
+            $result3 = mysqli_query($conn, $query3);
+
+            $query4 = "INSERT INTO `views`(`views`, `post_id`) VALUES (0 , '$post_id')";
+            $result4 = mysqli_query($conn, $query4);
+
+            if($result && $result3){
                 $errTyp = "teal";
-                $errMSG = "پست شما با موفقیت پست گردید";
+                $errMSG = "پست شما با موفقیت ثبت شد";
                 $conn = null;
             }
             else{
