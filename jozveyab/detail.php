@@ -4,6 +4,27 @@
 session_start();
 ob_start();
 
+//The function with example headers
+function send_download($file) {
+    $basename = basename($file);
+    $length   = sprintf("%u", filesize($file));
+
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="' . $basename . '"');
+    header('Content-Transfer-Encoding: binary');
+    header('Connection: Keep-Alive');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . $length);
+
+    ob_clean();
+    set_time_limit(0);
+    readfile($file);
+}
+
+
 $post_id = $_GET['post_id'];
 if (isset($post_id) && !empty($post_id)) {
 
@@ -38,7 +59,7 @@ if (isset($post_id) && !empty($post_id)) {
         $j_lesson = $row['jozve_lesson'];
         $j_uni = $row['jozve_uni'];
         $author_id = $row['author_id'];
-
+        $file_name = $row['file_name'];
 
         $user_id = mysqli_real_escape_string($conn, $author_id);
         $query = "SELECT * FROM `user` WHERE `id`='$author_id'";
@@ -46,6 +67,8 @@ if (isset($post_id) && !empty($post_id)) {
         $row = mysqli_fetch_assoc($result);
 
         $post_creator = $row['username'];
+
+
         $conn = null;
 
 
@@ -209,14 +232,11 @@ if (isset($_SESSION['user']) != "") {
                 </a>
             </form>
             <?php
-            $file_name = 'monkey.gif';
             $file = 'uploads/' . $file_name;
 
             if (isset($_POST['btn-download']) && file_exists($file)) {
-                $DB_HOST = 'localhost';
-                $DB_USER = 'root';
-                $DB_PASS = '';
-                $DB_NAME = 'jozveyab';
+
+                include_once ('dbconn.php');
 
                 $conn = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
                 mysqli_set_charset($conn, 'utf8');
@@ -235,15 +255,7 @@ if (isset($_SESSION['user']) != "") {
                 }
 
 
-                header('Content-Description: File Transfer');
-                header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-                header('Expires: 0');
-                header('Cache-Control: must-revalidate');
-                header('Pragma: public');
-                header('Content-Length: ' . filesize($file));
-                readfile($file);
-                exit;
+                send_download($file);
 
 
 

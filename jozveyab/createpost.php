@@ -28,38 +28,70 @@ if(isset($_SESSION['user']) != ""){
         $uni = strip_tags($uni);
         $author_id = $_SESSION['user'];
 
-        if(isset($name) && !empty($name) && isset($subject) && !empty($subject)){
 
-            $query = "INSERT INTO `jozve`(`jozve_name`, `jozve_ostad`, `jozve_author`, `jozve_lesson`, `jozve_uni`, `author_id`) VALUES ('$name', '$ostad', '$author', '$subject','$uni', '$author_id')";
-            $result = mysqli_query($conn, $query);
+        if(isset($_FILES['file'])){
+            $errors= array();
+            $file_name = $_FILES['file']['name'];
+            $file_size =$_FILES['file']['size'];
+            $file_tmp =$_FILES['file']['tmp_name'];
+            $file_type=$_FILES['file']['type'];
+            $file_ext=strtolower(end(explode('.',$_FILES['file']['name'])));
 
-            $query2 = "SELECT `id` FROM jozve ORDER BY id DESC LIMIT 1";
-            $result2 = mysqli_query($conn, $query2);
-            $post_id = mysqli_fetch_array($result2);
-            $post_id = $post_id['id'];
+            $expensions= array("gif","pdf","doc","docx");
 
-            $query3 = "INSERT INTO `likes`(`likes`, `post_id`) VALUES (0 , '$post_id')";
-            $result3 = mysqli_query($conn, $query3);
-
-            $query4 = "INSERT INTO `views`(`views`, `post_id`) VALUES (0 , '$post_id')";
-            $result4 = mysqli_query($conn, $query4);
-
-            if($result && $result3){
-                $errTyp = "teal";
-                $errMSG = "پست شما با موفقیت ثبت شد";
-                $conn = null;
+            if(in_array($file_ext,$expensions)=== false){
+                $errors[]="extension not allowed, please choose a PDF or DOCx file.";
             }
-            else{
-                $errTyp = "red";
-                $errMSG = "مشکلی در وارد کردن اطلاعات جزوه ی شما در سیستم به وجود آمده ، لطفا دوباره تلاش کنید";
-                $conn = null;
+
+            if($file_size > 21097152){
+                $errors[]='File size must be excately 20 MB';
+            }
+
+            if(empty($errors)==true){
+                move_uploaded_file($file_tmp,"uploads/".$file_name);
+                if(isset($name) && !empty($name) && isset($subject) && !empty($subject)){
+
+                    $query = "INSERT INTO `jozve`(`jozve_name`, `jozve_ostad`, `jozve_author`, `jozve_lesson`, `jozve_uni`, `author_id`, `file_name`) VALUES ('$name', '$ostad', '$author', '$subject','$uni', '$author_id', '$file_name')";
+                    $result = mysqli_query($conn, $query);
+
+                    $query2 = "SELECT `id` FROM jozve ORDER BY id DESC LIMIT 1";
+                    $result2 = mysqli_query($conn, $query2);
+                    $post_id = mysqli_fetch_array($result2);
+                    $post_id = $post_id['id'];
+
+                    $query3 = "INSERT INTO `likes`(`likes`, `post_id`) VALUES (0 , '$post_id')";
+                    $result3 = mysqli_query($conn, $query3);
+
+                    $query4 = "INSERT INTO `views`(`views`, `post_id`) VALUES (0 , '$post_id')";
+                    $result4 = mysqli_query($conn, $query4);
+
+                    if($result && $result3){
+                        $errTyp = "teal";
+                        $errMSG = "پست شما با موفقیت ثبت شد";
+                        $conn = null;
+                    }
+                    else{
+                        $errTyp = "red";
+                        $errMSG = "مشکلی در وارد کردن اطلاعات جزوه ی شما در سیستم به وجود آمده ، لطفا دوباره تلاش کنید";
+                        $conn = null;
+                    }
+                }
+                else{
+                    $errTyp = "red";
+                    $errMSG = "نام جزوه و موضوع جزوه حتما باید وارد شود";
+                    $conn = null;
+                }
+
+            }else{
+                print_r($errors);
             }
         }
         else{
             $errTyp = "red";
-            $errMSG = "نام جزوه و موضوع جزوه حتما باید وارد شود";
+            $errMSG = "آپلود فایل با مشکل مواجه شد";
             $conn = null;
         }
+
 
 
 
@@ -149,7 +181,7 @@ else{
             <?php
         }
         ?>
-    <form action="" method="post" class="login-form">
+    <form action="" method="post" class="login-form" enctype="multipart/form-data">
 
         <div class="row">
             <div class="input-field col s12">
@@ -190,7 +222,7 @@ else{
             <button style="margin-bottom: 5%;margin-top: 5%;width: 100%" class="btn waves-effect waves-light" type="submit" name="btn-create-post">ایجاد پست</button>
         </div>
 
-
+        <input type="file" name="file">
     </form>
     <div class="row">
         <div class="input-field col s6 m6 l6">
