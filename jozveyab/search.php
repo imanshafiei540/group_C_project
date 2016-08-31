@@ -84,11 +84,9 @@ if (isset($_SESSION['user']) != "") {
 
             if(strlen($val)>=4 && !empty($val))
             {
-                $mysql_host = 'localhost';
-                $mysql_un = 'root';
-                $mysql_pass = '';
-                $mysql_db = 'jozveyab';
-                $conn = mysqli_connect($mysql_host, $mysql_un, $mysql_pass, $mysql_db);
+                include_once ('dbconn.php');
+
+                $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
 
                 mysqli_set_charset($conn, 'utf8');
                 if (!$conn) {

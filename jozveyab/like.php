@@ -1,5 +1,8 @@
 <?php
-	$link = mysqli_connect('localhost', 'root', '','jozveyab') or die('error');
+
+	include_once ('dbconn.php');
+
+	$link = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME) or die('error');
 	
 	if($_REQUEST['postId'])
 	{

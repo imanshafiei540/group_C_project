@@ -6,11 +6,8 @@ if(isset($_SESSION['user']) != "") {
     $user_id = $_SESSION['user'];
 
     if (isset($_POST['btn-edit-user'])) {
-        echo 1;
-        $DB_HOST = 'localhost';
-        $DB_USER = 'root';
-        $DB_PASS = '';
-        $DB_NAME = 'jozveyab';
+
+        include_once ('dbconn.php');
 
         $conn = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
         mysqli_set_charset($conn, 'utf8');

@@ -3,10 +3,7 @@ session_start();
 ob_start();
 
 
-$DB_HOST = 'localhost';
-$DB_USER = 'root';
-$DB_PASS = '';
-$DB_NAME = 'jozveyab';
+include_once ('dbconn.php');
 
 $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
 mysqli_set_charset($conn, 'utf8');
@@ -111,7 +108,7 @@ if (isset($_SESSION['user']) != "") {
                 <hr>
                 <p>'.$row['jozve_name'].'</p>
                 <hr>
-                <a href="http://localhost/group_C_project/jozveyab/detail.php?post_id='.$row['id'].'" class="green-text" target="_blank" style="font-size: 0.9rem; float: left">دانلود جزوه</a>
+                <a href="detail.php?post_id='.$row['id'].'" class="green-text" target="_blank" style="font-size: 0.9rem; float: left">دانلود جزوه</a>
                 <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="45 Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes 1" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
 
             </div>';

@@ -7,10 +7,7 @@ ob_start();
 $post_id = $_GET['post_id'];
 if (isset($post_id) && !empty($post_id)) {
 
-    $DB_HOST = 'localhost';
-    $DB_USER = 'root';
-    $DB_PASS = '';
-    $DB_NAME = 'jozveyab';
+    include_once ('dbconn.php');
 
     $conn = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
     mysqli_set_charset($conn, 'utf8');
