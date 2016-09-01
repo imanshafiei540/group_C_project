@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 
     <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
 
@@ -106,15 +107,22 @@ if (isset($_SESSION['user']) != "") {
                     $num_rows = mysqli_num_rows($result);
                     while($data = mysqli_fetch_assoc($result))
                     {
+                        $post_id = $data['id'];
+                        $download = mysqli_query($conn, "SELECT `views` FROM `views` WHERE `post_id`='$post_id'");
+                        $counter_for_download = mysqli_fetch_array($download);
+                        $counter_for_download = $counter_for_download['views'];
 
+                        $like = mysqli_query($conn, "SELECT `likes` FROM `likes` WHERE `post_id`='$post_id'");
+                        $likes = mysqli_fetch_array($like);
+                        $likes = $likes['likes'];
 
-                        echo '<div id="box" style="margin: 2%;width: 21%" class="col s3 center z-depth-2 card-panel">
+                        echo '<div id="box" style="margin: 2%;width: 21%;float: right" class="col s3 center z-depth-2 card-panel">
                 <img width="80%" height="150px" src="static/images/icon_Linkedin.png">
                 <hr>
                 <p>'.$data['jozve_name'].'</p>
                 <hr>
-                <a href="http://localhost/group_C_project/jozveyab/detail.php?post_id='.$data['id'].'" class="green-text" target="_blank" style="font-size: 0.9rem; float: left">دانلود جزوه</a>
-                <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="45 Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes 1" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
+                <a href="detail.php?post_id='.$data['id'].'" class="green-text" target="_blank" style="font-size: 0.9rem; float: left">دانلود جزوه</a>
+                <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="'.$counter_for_download.' Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes '.$likes.'" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
 
             </div>';
 
