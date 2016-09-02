@@ -69,7 +69,7 @@ else{
         <div style="margin-top: 5%" class="col s12 m6 offset-m3 center">
             <div class="card green-wine">
                 <div class="card-content white-text">
-                    <a href="https://www.linkedin.com/" class="btn-floating right center green-spring">
+                    <a href="https://ir.linkedin.com/in/iman-shafiei-a96293111" class="btn-floating right center green-spring">
                         in
                     </a>
                     <br><br><br>

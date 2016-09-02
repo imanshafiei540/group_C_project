@@ -105,7 +105,7 @@ else{
                 <hr>
             </div>
             <div class="row">
-                <p class="margin right-align medium-small"><?php echo $row['first_name'] ." ". $row['last_name']; ?></p>
+                <p class="margin right-align medium-small"><?php echo $row['first_name'] == "" ? 'نام' : $row['first_name']." "; ?><?php echo $row['last_name'] == "" ? ' / نام خانوادگی شما در سیستم موجود نیست ' : $row['last_name']; ?></p>
                 <hr>
             </div>
             <div class="row">

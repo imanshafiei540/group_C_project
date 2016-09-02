@@ -60,6 +60,12 @@ if( isset($_POST['btn-signup'])){
                                 $errTyp = "teal";
                                 $errMSG = "ثبت نام شما با موفقیت انجام شد . لطفا وارد شوید";
                                 $conn = null;
+
+                                $_SESSION['errTyp'] = "teal";
+                                $_SESSION['errMSG'] = "ثبت نام شما با موفقیت انجام شد . لطفا وارد شوید";
+
+                                header('Location: login.php');
+
                             }
                         }
                         else{

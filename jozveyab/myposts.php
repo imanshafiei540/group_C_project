@@ -22,7 +22,10 @@ if(isset($_SESSION['user']) != ""){
 
     $result = mysqli_query($conn, "SELECT `id`, `jozve_name`, `jozve_ostad`, `jozve_author`, `jozve_lesson`, `jozve_uni`, `author_id` FROM `jozve` WHERE `author_id`='$user_id'");
 
-
+    $post_counter = mysqli_num_rows($result);
+    if ($post_counter == 0){
+        $empty = true;
+    }
 
 
 }
@@ -60,7 +63,7 @@ else{
         }
 
         body {
-            font-family: "B Mitra";
+            font-family: Font;
             font-size: large;
 
         }
@@ -118,7 +121,11 @@ while ($row = mysqli_fetch_array($result)){
             </div>';
 }
 $conn = null;
+if ($empty){
+    echo "<p style='font-family: B Mahsa;margin-top: 10%'>.پستی برای حساب کاربری شما ثبت نشده است ، می توانید از به وسیله ایجاد پست در نوار بالا پست خود را بگذارید و امتیاز جمع کنید </p><p style='font-family: B Mahsa;margin-bottom: 20%'>موفق باشید</p>";
+}
      ?>
+
 
 
         </div>

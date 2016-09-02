@@ -1,3 +1,43 @@
+<?php
+session_start();
+ob_start();
+
+if(isset($_POST['btn-contact'])){
+
+    include_once ('dbconn.php');
+    $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+
+    if ( !$conn ) {
+        die("Connection failed : " . mysqli_error());
+    }
+
+    //scape variables for security
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $subject = mysqli_real_escape_string($conn, $_POST['subject']);
+    $text = mysqli_real_escape_string($conn, $_POST['text']);
+
+    //can not sql injection for server
+    //strip string from tags like script tags
+    $email = strip_tags($email);
+    $subject = strip_tags($subject);
+    $text = strip_tags($text);
+
+
+    if(isset($email) && !empty($email) && isset($subject) && !empty($subject) && isset($text) && !empty($text)) {
+        $errTyp = "teal";
+        $errMSG = "پیام شما ثبت شد ، تشکر از همکاری شما";
+        $conn = null;
+    }
+
+    else{
+        $errTyp = "red";
+        $errMSG = "لطفا همه ی قسمت ها را پر کنید";
+        $conn = null;
+    }
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -45,7 +85,6 @@
 </head>
 <body class="cyan loaded">
 <?php
-session_start();
 if(isset($_SESSION['user']) != ""){
     include_once('header-after-login.html');
 }
@@ -53,21 +92,40 @@ else{
     include_once('header-before-login.html');
 }
 ?>
+
 <div id="login-form" class="row">
 
     <div style="text-align: right!important;" class="col s8 offset-s2 center z-depth-6 card-panel">
+
         <br>
         <h5>تماس با جزوه یاب</h5>
     <hr>
         <p style="font-size: medium">برای تماس با جزوه یاب می توانید از راه های زیر استفاده کنید و یا فرم زیر را پر کنید و سوال ، پیشنهاد و یا انتقاد خود را با در میان بگذارید ، اعضای بخش پشتیبانی در اسرع وقت به شما پاسخ خواهند داد</p>
         <p style="font-size: medium">با تشکر از حسن انتخاب شما</p>
         <hr>
+        <?php
+        if ( isset($errMSG) ) {
+
+            ?>
+            <div class="row">
+                <div class="col s12 m12">
+                    <div class="card-panel <?php echo $errTyp; ?>">
+          <span class="white-text">
+               <?php echo $errMSG; ?>
+          </span>
+                    </div>
+                </div>
+            </div>
+
+            <?php
+        }
+        ?>
     <form action="" method="post" class="login-form">
 
         <div class="row">
             <div class="input-field col s12">
-                <label for="username" class="active right-align">پست الکترونیک</label>
-                <input id="username" name="username" type="email" required>
+                <label for="email" class="active right-align">پست الکترونیک</label>
+                <input id="email" name="email" type="email" required>
             </div>
         </div>
 
@@ -81,14 +139,14 @@ else{
         <div class="row">
             <div class="input-field col s12">
                 <label for="text" class="active right-align">متن پیام</label>
-                <textarea style="margin-top: 3%;height: 150px" id="text" name="text" required></textarea>
+                <textarea style="margin-top: 3%;height: 150px;direction: rtl" id="text" name="text" required></textarea>
             </div>
         </div>
 
 
 
         <div class="col s12">
-            <button style="margin-bottom: 5%;margin-top: 5%;width: 100%" class="btn waves-effect waves-light" type="submit" name="btn-edit-pass">فرستادن پیام</button>
+            <button style="margin-bottom: 5%;margin-top: 5%;width: 100%" class="btn waves-effect waves-light" type="submit" name="btn-contact">فرستادن پیام</button>
         </div>
 
 

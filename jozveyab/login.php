@@ -5,6 +5,12 @@ if(isset($_SESSION['user']) != ""){
     header('Location: index.php');
 
 }
+if(isset($_SESSION['errTyp']) && isset($_SESSION['errMSG'])){
+    $errTyp = $_SESSION['errTyp'];
+    $errMSG = $_SESSION['errMSG'];
+    session_destroy();
+}
+
 
 if(isset($_POST['btn-login'])){
 
