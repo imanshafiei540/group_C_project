@@ -77,6 +77,19 @@ $result = mysqli_query($conn, "SELECT * FROM jozve ORDER BY id DESC LIMIT 24");
         #box:nth-child(7){
             clear: both;
         }
+        .circle_img
+        {
+            width:200px;
+            height: 200px;
+            border-radius: 50%;
+            font-size: 100%;
+            color: #fff;
+            line-height: 30px;
+            padding-top: 30%;
+            text-align: center;
+            background: #000;
+            margin-top: 5%;
+        }
     </style>
 </head>
 <body class="cyan loaded">
@@ -106,7 +119,7 @@ if (isset($_SESSION['user']) != "") {
             $likes = mysqli_fetch_array($like);
             $likes = $likes['likes'];
             echo '<div id="box" style="margin: 2%;width: 21%;float: right" class="col s3 center z-depth-2 card-panel">
-                <img width="80%" height="150px" src="static/images/icon_Linkedin.png">
+                <div class="circle_img">' . $row['jozve_name'] . '</div>
                 <hr>
                 <p>'.$row['jozve_name'].'</p>
                 <hr>

@@ -3,13 +3,13 @@ session_start();
 ob_start();
 
 
-include_once ('dbconn.php');
+include_once('dbconn.php');
 
-$conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+$conn = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 mysqli_set_charset($conn, 'utf8');
 
 
-if ( !$conn ) {
+if (!$conn) {
     die("Connection failed : " . mysqli_error());
 }
 
@@ -94,7 +94,8 @@ $result = mysqli_query($conn, "SELECT * FROM jozve ORDER BY id DESC LIMIT 4");
             z-index: 100;
             /* text-align: left; */
         }
-        h4{
+
+        h4 {
             text-align: right;
         }
 
@@ -104,6 +105,19 @@ $result = mysqli_query($conn, "SELECT * FROM jozve ORDER BY id DESC LIMIT 4");
 
         a:hover {
             color: blue;
+        }
+        .circle_img
+        {
+            width:200px;
+            height: 200px;
+            border-radius: 50%;
+            font-size: 100%;
+            color: #fff;
+            line-height: 30px;
+            padding-top: 30%;
+            text-align: center;
+            background: #000;
+            margin-top: 5%;
         }
 
     </style>
@@ -155,11 +169,12 @@ if (isset($_SESSION['user']) != "") {
 
 <div class="row">
     <div id="box" style="text-align: right!important;" class="container">
-        <a style="float: left;font-size: larger;" target="_blank" href="morenews.php">برای مشاهده جزوه های جدید بیشتر کلیک کنید</a>
+        <a style="float: left;font-size: larger;" target="_blank" href="morenews.php">برای مشاهده جزوه های جدید بیشتر
+            کلیک کنید</a>
         <h4>جدیدترین جزوه ها</h4>
         <hr>
         <?php
-        while ($row = mysqli_fetch_array($result)){
+        while ($row = mysqli_fetch_array($result)) {
             $post_id = $row['id'];
             $download = mysqli_query($conn, "SELECT `views` FROM `views` WHERE `post_id`='$post_id'");
             $counter_for_download = mysqli_fetch_array($download);
@@ -170,12 +185,12 @@ if (isset($_SESSION['user']) != "") {
             $likes = $likes['likes'];
 
             echo '<div id="box" style="margin: 2%;width: 21%;float: right" class="col s3 center z-depth-2 card-panel">
-                <img width="80%" height="150px" src="static/images/icon_Linkedin.png">
+                <div class="circle_img">' . $row['jozve_name'] . '</div>
                 <hr>
-                <p>'.$row['jozve_name'].'</p>
+                <p>' . $row['jozve_name'] . '</p>
                 <hr>
-                <a href="detail.php?post_id='.$row['id'].'" class="green-text" target="_blank" style="font-size: 0.9rem; float: left">دانلود جزوه</a>
-                <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="'.$counter_for_download.' Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes '.$likes.'" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
+                <a href="detail.php?post_id=' . $row['id'] . '" class="green-text" target="_blank" style="font-size: 0.9rem; float: left">دانلود جزوه</a>
+                <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="' . $counter_for_download . ' Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes ' . $likes . '" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
 
             </div>';
         }
@@ -187,13 +202,14 @@ if (isset($_SESSION['user']) != "") {
 
 <div class="row">
     <div id="box" style="text-align: right!important;" class="container">
-        <a style="float: left;font-size: larger;" target="_blank" href="morelike.php">برای مشاهده جزوه های محبوب بیشتر کلیک کنید</a>
+        <a style="float: left;font-size: larger;" target="_blank" href="morelike.php">برای مشاهده جزوه های محبوب بیشتر
+            کلیک کنید</a>
         <h4>محبوب ترین جزوه ها</h4>
         <hr>
         <?php
         $query = "SELECT * FROM likes ORDER BY likes DESC LIMIT 4";
         $res = mysqli_query($conn, $query);
-        while ($data = mysqli_fetch_assoc($res)){
+        while ($data = mysqli_fetch_assoc($res)) {
             $id = $data['post_id'];
             $query2 = "SELECT * FROM jozve WHERE `id`='$id'";
             $res2 = mysqli_query($conn, $query2);
@@ -209,12 +225,12 @@ if (isset($_SESSION['user']) != "") {
             $likes = $likes['likes'];
 
             echo '<div id="box" style="margin: 2%;width: 21%;float: right" class="col s3 center z-depth-2 card-panel">
-                <img width="80%" height="150px" src="static/images/icon_Linkedin.png">
+                <div class="circle_img">' . $row['jozve_name'] . '</div>
                 <hr>
-                <p>'.$row['jozve_name'].'</p>
+                <p>' . $row['jozve_name'] . '</p>
                 <hr>
-                <a href="http://localhost/group_C_project/jozveyab/detail.php?post_id='.$row['id'].'" class="green-text" target="_blank" style="font-size: 0.9rem; float: left">دانلود جزوه</a>
-                <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="'.$counter_for_download.' Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes '.$likes.'" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
+                <a href="http://localhost/group_C_project/jozveyab/detail.php?post_id=' . $row['id'] . '" class="green-text" target="_blank" style="font-size: 0.9rem; float: left">دانلود جزوه</a>
+                <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="' . $counter_for_download . ' Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes ' . $likes . '" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
 
             </div>';
 
@@ -227,13 +243,14 @@ if (isset($_SESSION['user']) != "") {
 </div>
 <div class="row">
     <div id="box" style="text-align: right!important;" class="container">
-        <a style="float: left;font-size: larger;" target="_blank" href="moreview.php">برای مشاهده جزوه های پربازدید بیشتر کلیک کنید</a>
+        <a style="float: left;font-size: larger;" target="_blank" href="moreview.php">برای مشاهده جزوه های پربازدید
+            بیشتر کلیک کنید</a>
         <h4>پربازدید ترین جزوه ها</h4>
         <hr>
         <?php
         $query = "SELECT * FROM views ORDER BY views DESC LIMIT 4";
         $res = mysqli_query($conn, $query);
-        while ($data = mysqli_fetch_assoc($res)){
+        while ($data = mysqli_fetch_assoc($res)) {
             $id = $data['post_id'];
             $query2 = "SELECT * FROM jozve WHERE `id`='$id'";
             $res2 = mysqli_query($conn, $query2);
@@ -247,13 +264,13 @@ if (isset($_SESSION['user']) != "") {
             $like = mysqli_query($conn, "SELECT `likes` FROM `likes` WHERE `post_id`='$post_id'");
             $likes = mysqli_fetch_array($like);
             $likes = $likes['likes'];
-            echo '<div id="box" style="margin: 2%;width: 21%;float: right" class="col s3 center z-depth-2 card-panel">
-                <img width="80%" height="150px" src="static/images/icon_Linkedin.png">
+            echo '<div id="box" style="margin: 2%;width: 21%;float: right;" class="col s3 center z-depth-2 card-panel">
+                <div class="circle_img">' . $row['jozve_name'] . '</div>
                 <hr>
-                <p>'.$row['jozve_name'].'</p>
+                <p>' . $row['jozve_name'] . '</p>
                 <hr>
-                <a href="http://localhost/group_C_project/jozveyab/detail.php?post_id='.$row['id'].'" class="green-text" target="_blank" style="font-size: 0.9rem; float: left">دانلود جزوه</a>
-                <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="'.$counter_for_download.' Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes '.$likes.'" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
+                <a href="http://localhost/group_C_project/jozveyab/detail.php?post_id=' . $row['id'] . '" class="green-text" target="_blank" style="font-size: 0.9rem; float: left">دانلود جزوه</a>
+                <span style="float: right;"><i class="material-icons light-blue-text tooltipped" data-position="top" data-delay="50" data-tooltip="' . $counter_for_download . ' Views" style="font-size: 1.3rem; padding-right: 10px;cursor: pointer;">visibility</i> <i class="material-icons pink-text tooltipped action-like" data-workpad-key="D84lCquI0azsJt7V5qQEHn" data-position="top" data-delay="50" data-tooltip="Likes ' . $likes . '" style="font-size: 1.3rem; padding-right: 10px; cursor: pointer;">favorite</i> <span style="float: left;"></span></span>
 
             </div>';
 

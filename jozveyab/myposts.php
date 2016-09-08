@@ -82,10 +82,22 @@ else{
             position: relative;!important;
             padding-right: 5%;
         }
-        #box:nth-child(13){
+        #box:nth-child(6){
             clear: both;
         }
-
+        .circle_img
+        {
+            width:165px;
+            height: 165px;
+            border-radius: 50%;
+            font-size: 100%;
+            color: #fff;
+            line-height: 30px;
+            padding-top: 30%;
+            text-align: center;
+            background: #000;
+            margin-top: 5%;
+        }
     </style>
 </head>
 <body class="cyan loaded">
@@ -111,7 +123,7 @@ while ($row = mysqli_fetch_array($result)){
     $likes = mysqli_fetch_array($like);
     $likes = $likes['likes'];
     echo '<div id="box" style="margin: 2%;width: 21%;float: right" class="col s3 center z-depth-2 card-panel">
-                <img width="80%" height="150px" src="static/images/icon_Linkedin.png">
+                <div class="circle_img">' . $row['jozve_name'] . '</div>
                 <hr>
                 <p>'.$row['jozve_name'].'</p>
                 <hr>
@@ -121,7 +133,7 @@ while ($row = mysqli_fetch_array($result)){
             </div>';
 }
 $conn = null;
-if ($empty){
+if (isset($empty)){
     echo "<p style='font-family: B Mahsa;margin-top: 10%'>.پستی برای حساب کاربری شما ثبت نشده است ، می توانید از به وسیله ایجاد پست در نوار بالا پست خود را بگذارید و امتیاز جمع کنید </p><p style='font-family: B Mahsa;margin-bottom: 20%'>موفق باشید</p>";
 }
      ?>
